@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Candidate.App"
+             xmlns:matchVM="clr-namespace:Candidate.ViewModel"
+             >
+	<Application.Resources>
+        <matchVM:MatchViewModel x:Key="MatchViewModel" />
+
+        <ResourceDictionary>
+            <Color x:Key="IconColor">#2F405F</Color>
+            <Color x:Key="PageColor">#F2F2F2</Color>
+
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="#5D757F"/>
+                <Setter Property="BarTextColor" Value="Color.White"/>
+            </Style>
+
+            <!--<Style TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="#f8f8f8"/>
+            </Style>
+
+            <Style TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="{StaticResource whiteColor}"/>
+            </Style>-->
+        </ResourceDictionary>
+
+	</Application.Resources>
+</Application>

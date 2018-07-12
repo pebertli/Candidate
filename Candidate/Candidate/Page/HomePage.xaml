@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Candidate"
+             BackgroundColor="{StaticResource PageColor}"
+             x:Class="Candidate.HomePage">
+
+    <Grid Margin="20" CompressedLayout.IsHeadless="true">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Frame HasShadow="True"  Grid.Row="0"
+                Grid.Column="0" Margin="0" Padding="0">
+            <RelativeLayout >
+                <Button x:Name="RssButton"                 
+                Margin="0"   
+                         RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0,Constant=0}"                                           
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=0,Constant=0}"                                                                   
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1}"       
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=1}" 
+                BackgroundColor="White"                                
+                Image="rss.png"                
+                />
+                <Label Text="NOTÍCIAS" 
+                       Margin="0"      
+                       HorizontalTextAlignment="Center"
+                         RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0.8,Constant=0}"                                           
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=0,Constant=0}"                                                                   
+                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1}"       
+                       RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0.2}"                                                
+                       TextColor="{StaticResource IconColor}"                                                                                          
+                       />
+            </RelativeLayout>
+        </Frame>
+        
+        <Frame HasShadow="True"  Grid.Row="0"
+                Grid.Column="1" Margin="0" Padding="0">
+            <RelativeLayout >
+                <Button x:Name="MatchButton"                                                 
+                 Margin="0"
+                BackgroundColor="Transparent"
+                TextColor="{StaticResource IconColor}"                
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0,Constant=0}"                                           
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=0,Constant=0}"                                                                   
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1}"       
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=1}" 
+                Image="questionaire.png"                
+                Clicked="MatchButtonClicked"
+                />
+                <Label Text="MATCH"   
+                       BackgroundColor="Transparent"
+                       TextColor="{StaticResource IconColor}" 
+                       HorizontalTextAlignment="Center"
+                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0.8,Constant=0}"                                           
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=0,Constant=0}"                                                                   
+                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1}"       
+                       RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0.2}"                                                
+                       />
+            </RelativeLayout>
+        </Frame>
+
+        <Frame HasShadow="True"  Grid.Row="1"
+                Grid.Column="0" Margin="0" Padding="0">
+            <RelativeLayout >
+                <Button x:Name="ProfileButton"                                                 
+                 Margin="0"
+                BackgroundColor="Transparent"
+                TextColor="{StaticResource IconColor}"                
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0,Constant=0}"                                           
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=0,Constant=0}"                                                                   
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1}"       
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=1}" 
+                Image="profile.png"                
+                Clicked="ProfileButtonClicked"
+                />
+                <Label Text="PERFIL DO CANDIDATO"   
+                       BackgroundColor="Transparent"
+                       TextColor="{StaticResource IconColor}" 
+                       HorizontalTextAlignment="Center"
+                       RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0.8,Constant=0}"                                           
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=0,Constant=0}"                                                                   
+                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1}"       
+                       RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0.2}"                                                
+                       />
+            </RelativeLayout>
+        </Frame>
+        <Frame HasShadow="True"  Grid.Row="1"
+                Grid.Column="1" Margin="0" Padding="0">
+            <RelativeLayout >
+                <Button x:Name="VoteButton"                 
+                Margin="0"   
+                         RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0,Constant=0}"                                           
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=0,Constant=0}"                                                                   
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1}"       
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=1}" 
+                BackgroundColor="White"                                
+                Image="rss.png"                
+                />
+                <Label Text="ESTATÍSTICAS" 
+                       Margin="0"      
+                       HorizontalTextAlignment="Center"
+                         RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0.8,Constant=0}"                                           
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=0,Constant=0}"                                                                   
+                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1}"       
+                       RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0.2}"                                                
+                       TextColor="{StaticResource IconColor}"                                                                                          
+                       />
+            </RelativeLayout>
+        </Frame>
+
+        <Frame HasShadow="True" 
+               Grid.Row="3"
+                Grid.Column="1"               
+               CornerRadius="45"
+                     x:Name="TapImage"
+               HeightRequest="20"
+               WidthRequest="20"
+               HorizontalOptions="End"
+               >
+            <!--<Button BackgroundColor="Transparent"                                 
+                FontSize="Micro"                
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Image="refresh.png"                
+                Clicked="UpdateInfoClicked"
+                />-->
+            <Image  VerticalOptions="FillAndExpand"
+              
+                HorizontalOptions="FillAndExpand"
+                    BackgroundColor="Transparent"
+                    
+                    Source="refresh.png">
+
+            </Image>
+        </Frame>
+    </Grid>
+
+</ContentPage>

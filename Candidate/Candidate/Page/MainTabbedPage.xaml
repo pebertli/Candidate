@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:local="clr-namespace:Candidate"
+             x:Class="Candidate.MainTabbedPage" 
+            BarBackgroundColor="LightBlue"
+            BarTextColor="{StaticResource grafiteColor}"
+            >
+  <!--Pages can be added as references or inline-->
+    <local:HomePage Icon="home.png" />
+    <local:CandidateInfoPage Icon="profile.png"/>
+  <ContentPage Title="Tab 2" />
+  <ContentPage Title="Tab 3" />
+</TabbedPage>

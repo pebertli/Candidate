@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:data="clr-namespace:Syncfusion.DataSource;assembly=Syncfusion.DataSource.Portable"
+             x:Name="ProfilePage"
+             x:Class="Candidate.ProfilePage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="9*"/>
+            </Grid.RowDefinitions>
+            <Entry Placeholder="Filtrar" Grid.Row="0"/>
+            <syncfusion:SfListView Grid.Row="1"      
+                                   ItemSize="120"                                      
+                                   VerticalOptions="Fill"
+                                   ItemsSource="{Binding Profiles}">
+                <syncfusion:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame HasShadow="False"
+                               Padding="5"
+                               OutlineColor="LightGray">
+                            
+                        
+                        <Grid VerticalOptions="StartAndExpand"                               
+                              >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="6*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0"                                    
+                                   Source="{Binding ImageFile, Mode=OneWay}" 
+                                   Aspect="AspectFit">
+                            </Image>
+                            <Label Grid.Column="1"  
+                                   Text="{Binding Name, Mode=TwoWay}" 
+                                   HorizontalTextAlignment="Start" 
+                                   VerticalTextAlignment="Center"
+                                   FontAttributes="Bold" 
+                                   LineBreakMode="WordWrap" 
+                                   FontSize="Small"/>
+                        </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </syncfusion:SfListView.ItemTemplate>
+            </syncfusion:SfListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

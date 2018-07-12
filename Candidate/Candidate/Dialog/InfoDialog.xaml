@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Candidate.Dialog.InfoDialog">
+  <ContentView.Content>
+        <Frame
+                HasShadow="True"
+                CornerRadius="10"
+            Margin="20"
+                BackgroundColor="White"
+                HorizontalOptions="Center"  
+            VerticalOptions="Start"
+            >
+            <StackLayout Padding="10">
+                <Label Text="Informação" FontAttributes="Bold"/>
+                <ScrollView Orientation="Vertical">
+                    <StackLayout>
+                        <Label Text="{Binding InfoTextPopup, Mode=TwoWay}"
+                                VerticalOptions="Start" 
+                                HorizontalOptions="CenterAndExpand"   
+                               LineBreakMode="WordWrap"
+                               FontSize="Small"
+                                />
+                       
+                    </StackLayout>
+                </ScrollView>
+                <Button Text="Close" Clicked="CloseButtonClicked">
+
+                </Button>
+            </StackLayout>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

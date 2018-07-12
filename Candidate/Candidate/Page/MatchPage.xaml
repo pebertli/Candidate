@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Candidate.MatchPage"             
+             xmlns:local0="clr-namespace:Candidate.ViewModel"
+             xmlns:local="clr-namespace:Candidate.ViewModel.Converter"
+             xmlns:local2="clr-namespace:Candidate.ViewModel.Behavior"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:data="clr-namespace:Syncfusion.DataSource;assembly=Syncfusion.DataSource.Portable"
+             xmlns:candidatedata="clr-namespace:Candidate.Models"
+             x:Name="MyPage"
+xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+             xmlns:customControl="clr-namespace:Candidate.View">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ItemTappedConverter x:Key="ItemConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid CompressedLayout.IsHeadless="true">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+            <cv:CarouselView ItemsSource="{Binding Path=Questions, Source={x:Static candidatedata:ProfileData.Instance}, Mode=TwoWay}" 
+                             Position="{Binding Position, Mode=TwoWay}" 
+                             x:Name="QuestionCarouselView"                             
+                             Grid.Row="0"
+                             VerticalOptions="Fill"
+                             >
+                <cv:CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout HeightRequest="250">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="9*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <ScrollView Grid.Column="0" VerticalOptions="Start" Orientation="Vertical">
+                                    <StackLayout>
+                                        <Label Text="{Binding Title}" 
+                                               LineBreakMode="WordWrap" 
+                                                 VerticalOptions="Start" 
+                                HorizontalOptions="CenterAndExpand"   
+                                               Margin="5" 
+                                               FontSize="Small"                                                
+                                              />
+                                    </StackLayout>
+                                </ScrollView>
+                                <Image Margin="5" VerticalOptions="Start" Grid.Column="1" Source="info.png"                                        
+                                       Aspect="AspectFit">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.InfoCommand, Source={x:Reference Name=MyPage}}"
+                                                              CommandParameter="{Binding Info}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Grid>
+                            
+                            <Frame Padding="5"                                    
+                   Margin="10"                    
+                   Grid.Row="1"
+                                   HasShadow="False"
+                   CornerRadius="0"             
+                                   VerticalOptions="EndAndExpand"
+                   OutlineColor="LightGray">
+
+
+                                <ListView x:Name="assertiveListView" 
+                                      SeparatorVisibility="None"                                          
+                                      VerticalOptions="CenterAndExpand"      
+                                      RowHeight="20"
+                                          HeightRequest="101"
+                                      ItemsSource="{Binding Assertives, Mode=TwoWay}"
+                                      SelectedItem="{Binding Path=BindingContext.SelectedItem , Source={x:Reference Name=MyPage}, Mode=TwoWay}">
+                                <ListView.Behaviors>
+                                    <local2:EventToCommandBehavior EventName="ItemTapped" 
+                                                               Command="{Binding Path=BindingContext.TapCommand, Source={x:Reference Name=MyPage}}"
+                                                               Converter="{StaticResource ItemConverter}"/>
+                                </ListView.Behaviors>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <customControl:ExtendedViewCell SelectedBackgroundColor="WhiteSmoke">
+                                            <Grid HeightRequest="20">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="5"/>
+                                                    <ColumnDefinition Width="16"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Image Grid.Column="1" IsVisible="{Binding IsChecked, Mode=TwoWay}" VerticalOptions="CenterAndExpand" Source="checked.png" Aspect="AspectFit" HeightRequest="16" WidthRequest="16"/>
+                                                <Image Grid.Column="1" IsVisible="{Binding IsChecked.Equals(false), Mode=TwoWay}" VerticalOptions="CenterAndExpand" Source="unchecked.png" Aspect="AspectFit" HeightRequest="16" WidthRequest="16"/>
+                                                <Label Grid.Column="2" Text="{Binding Text, Mode=TwoWay}" FontSize="Small" VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Start"/>
+                                            </Grid>
+                                        </customControl:ExtendedViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </cv:CarouselView.ItemTemplate>
+            </cv:CarouselView>
+
+            <Frame Padding="2" 
+                   Margin="5" 
+                   Grid.Row="1"
+                   CornerRadius="10" 
+                   HeightRequest="40">
+                <Grid CompressedLayout.IsHeadless="true">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" 
+                       Source="left.png" 
+                       Aspect="AspectFit"
+                       IsEnabled="{Binding LeftEnabled, Mode=TwoWay}">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Path=BindingContext.LeftCommand, Source={x:Reference Name=MyPage}}"
+                                                              CommandParameter="{Binding Position}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image Grid.Column="1" Source="clear.png" Aspect="AspectFit"></Image>
+                    <Image Grid.Column="2" Source="check.png" Aspect="AspectFit"></Image>
+                    <Image Grid.Column="3" 
+                       Source="right.png"
+                       Aspect="AspectFit"
+                       IsEnabled="{Binding RightEnabled, Mode=TwoWay}">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Path=BindingContext.RightCommand, Source={x:Reference Name=MyPage}}"
+                                                              CommandParameter="{Binding Position}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+            </Frame>
+            <StackLayout Grid.Row="2" CompressedLayout.IsHeadless="true">
+                <Label Margin="10" Text="Clique no candidato para saber o que ele pensa sobre a questão"/>
+                <syncfusion:SfListView x:Name="listView"
+                                   ItemsSource="{Binding Path=Profiles, Source={x:Static candidatedata:ProfileData.Instance}, Mode=TwoWay}"
+                                   Orientation="Horizontal"
+                                   ItemSize="100"                                   
+                                   SelectionBackgroundColor="Transparent"
+                                   TapCommand="{Binding Path=BindingContext.ProfileQuestionCommand, Source={x:Reference Name=MyPage}}"                                          
+                                   SelectionMode="Single"
+                                   >
+                    <syncfusion:SfListView.DataSource>
+                        <data:DataSource LiveDataUpdateMode="AllowDataShaping">
+                        <data:DataSource.SortDescriptors>
+                            <data:SortDescriptor PropertyName="Score" Direction="Descending"/>
+                             <data:SortDescriptor PropertyName="Name" Direction="Ascending"/>
+                            </data:DataSource.SortDescriptors>
+                        </data:DataSource>
+                        </syncfusion:SfListView.DataSource>
+
+                        <syncfusion:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Image Grid.Row="0" 
+                                   Source="{Binding ImageFile, Mode=OneWay}" 
+                                   Aspect="AspectFit">
+                                </Image>
+                                <Label Grid.Row="1" 
+                                   Text="{Binding Name, Mode=TwoWay}" 
+                                   HorizontalTextAlignment="Center" 
+                                   FontAttributes="Bold" 
+                                   LineBreakMode="WordWrap" FontSize="Micro"/>
+                                <Label Grid.Row="2" 
+                                       Text="{Binding Score, Mode=TwoWay, StringFormat='{0:0.00} %'}" 
+                                       HorizontalTextAlignment="Center"                                    
+                                       IsVisible="{Binding Path=BindingContext.ScoreVisible, Source={x:Reference Name=MyPage}, Mode=TwoWay}"
+                                       LineBreakMode="WordWrap"
+                                       FontSize="Micro"/>
+
+
+                            </Grid>
+                        </DataTemplate>
+                    </syncfusion:SfListView.ItemTemplate>
+                </syncfusion:SfListView>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
