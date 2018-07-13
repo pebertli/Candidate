@@ -29,7 +29,7 @@
                 BackgroundColor="White"                                
                 Image="rss.png"                
                 />
-                <Label Text="NOTÍCIAS" 
+                <Label Text="NEWS" 
                        Margin="0"      
                        HorizontalTextAlignment="Center"
                          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0.8,Constant=0}"                                           
@@ -81,7 +81,7 @@
                 Image="profile.png"                
                 Clicked="ProfileButtonClicked"
                 />
-                <Label Text="PERFIL DO CANDIDATO"   
+                <Label Text="PROFILE"   
                        BackgroundColor="Transparent"
                        TextColor="{StaticResource IconColor}" 
                        HorizontalTextAlignment="Center"
@@ -104,7 +104,7 @@
                 BackgroundColor="White"                                
                 Image="rss.png"                
                 />
-                <Label Text="ESTATÍSTICAS" 
+                <Label Text="STATISTIC" 
                        Margin="0"      
                        HorizontalTextAlignment="Center"
                          RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0.8,Constant=0}"                                           

@@ -12,7 +12,7 @@ namespace Candidate.Models
 {
     public class Profile : INotifyPropertyChanged
     {
-        [PrimaryKey, AutoIncrement]        
+        [PrimaryKey, Unique, AutoIncrement]        
         public int Id { get; set; }
 
         //[ForeignKey(typeof(ProfileQuestion))]

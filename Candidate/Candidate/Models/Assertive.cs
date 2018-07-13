@@ -10,7 +10,7 @@ namespace Candidate.Models
 {   
     public class Assertive : INotifyPropertyChanged
     {
-        [PrimaryKey, AutoIncrement]       
+        [PrimaryKey, Unique, AutoIncrement]       
         public int Id { get; set; }
 
         [ForeignKey(typeof(Question))]

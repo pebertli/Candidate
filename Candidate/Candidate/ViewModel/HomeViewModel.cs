@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -54,7 +55,7 @@ namespace Candidate.ViewModel
 
 
         public HomeViewModel()
-        {
+        {          
             DateTime savedDate = CrossSettings.Current.GetValueOrDefault("LastSync", DateTime.UtcNow);
             UpdateInfoText = "Última atualização em " + savedDate.ToShortDateString() + ", "
                         + savedDate.ToShortTimeString();
@@ -66,7 +67,7 @@ namespace Candidate.ViewModel
             (v as ProgressDialog).BindingContext = this;
             PopupPage p = new ProgressDialogPage(v);
 
-            ProgressDialogText = "Atualizando";
+            ProgressDialogText = "Refreshing data";
 
             //was already open
             if (forceUpdate || !CrossSettings.Current.GetValueOrDefault("AppFirstOpen", false))            
@@ -88,17 +89,17 @@ namespace Candidate.ViewModel
                     //save lastSync
                     if (inSync)
                     {
-                        ProgressDialogText = "Atualizado com sucesso";                            
+                        ProgressDialogText = "Successful";                            
                         CrossSettings.Current.AddOrUpdateValue("LastSync", DateTime.UtcNow);                           
                     }
                     else
                     {
-                            ProgressDialogText = "Falha na atualização. Tente novamente mais tarde";
+                            ProgressDialogText = "Fail. Try again later";
                     }
                 }
                 else
                 {
-                        ProgressDialogText = "Falha na atualização. Sem conexão com a Internet";
+                        ProgressDialogText = "Fail. There is no Internet connection";
                 }
             }
             finally
@@ -134,7 +135,8 @@ namespace Candidate.ViewModel
 
                         try
                         {
-                            profileQuestions = await Task.Run(() => JsonConvert.DeserializeObject<List<ProfileQuestion>>(json));
+                            profileQuestions = await Task.Run(() => 
+                            JsonConvert.DeserializeObject<List<ProfileQuestion>>(json));
                         }
                         catch (Exception e)
                         {
@@ -143,23 +145,15 @@ namespace Candidate.ViewModel
 
 
                         if (profileQuestions != null)
-                        {
-                            int rows = 0;
+                        {                            
                             //drop and recreate database
                             ProfileData.Instance.CreateDatabase();
-                            //SQLiteAsyncConnection conn = new SQLiteAsyncConnection(App.DatabaseLocation);                     
-                            //var connectionWithLock = SqliteAsyncConnectionWrapper.Lock(conn);
-                            //using (connectionWithLock.Lock())
-                            //{
-                            //    connectionWithLock.UpdateWithChildren(element);
-                            //}
-
-
-
+                         
                             using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.DatabaseLocation))
                             {
                                 conn.InsertOrReplaceAllWithChildren(profileQuestions, recursive: true);
                             }
+
                             ////fresh data to memory
                             await Task.Factory.StartNew(() => ProfileData.Instance.SqliteToMemory());
                         }
@@ -168,7 +162,7 @@ namespace Candidate.ViewModel
             }
             catch(Exception e)
             {
-
+                e.GetBaseException();
             }
 
                 return ret;

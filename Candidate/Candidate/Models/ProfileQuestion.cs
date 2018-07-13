@@ -11,7 +11,7 @@ namespace Candidate.Models
 {
     public class ProfileQuestion : INotifyPropertyChanged
     {
-        [PrimaryKey, AutoIncrement]
+        [PrimaryKey, Unique, AutoIncrement]
         public int Id { get; set; }
 
         public float Choice { get; set; }

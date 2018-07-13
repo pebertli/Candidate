@@ -17,7 +17,9 @@ namespace Candidate
 
 		public App ()
 		{
-            InitializeComponent();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NzE2NUAzMTM2MmUzMjJlMzBHYk9XUWZsdkNPNXlsazdvSDZBRmtzS0pYdkZYd2QxYWRhSFVWb2FDamNVPQ==");
+
+InitializeComponent();
             MainPage = new NavigationPage(new HomePage());
         }
 

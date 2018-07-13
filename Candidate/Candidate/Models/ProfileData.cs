@@ -28,16 +28,9 @@ namespace Candidate.Models
 
         private ProfileData()
         {
-            
-
-            //Create Tables in sqlite database
             CreateDatabase();
-
-            //Debug -- Populate from memory
-            //Populate to memory
             HardCodeToMemory();
-            //Populate from memory
-            MemoryToSqlite();            
+            MemoryToSqlite();
         }      
 
 
@@ -75,39 +68,47 @@ namespace Candidate.Models
 
         public void CreateDatabase()
         {
+            try
+            {            
+                using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+                {
 
-            SQLiteAsyncConnection connection = new SQLiteAsyncConnection(App.DatabaseLocation);
-            
-                connection.DropTableAsync<Profile>();
-                connection.DropTableAsync<Question>();
-                connection.DropTableAsync<Assertive>();
-                connection.DropTableAsync<ProfileQuestion>();
+                    conn.DropTable<Profile>();
+                    conn.DropTable<Question>();
+                    conn.DropTable<Assertive>();
+                    conn.DropTable<ProfileQuestion>();
 
-                connection.CreateTableAsync<Profile>();
-                connection.CreateTableAsync<Assertive>();
-                connection.CreateTableAsync<Question>();                
-                connection.CreateTableAsync<ProfileQuestion>();
-            connection.GetConnection().Close();
-            connection.GetConnection().Dispose();
-            connection = null;
-        }
+                    conn.CreateTable<Profile>();
+                    conn.CreateTable<Assertive>();
+                    conn.CreateTable<Question>();
+                    conn.CreateTable<ProfileQuestion>();
 
-        void MemoryToSqlite()
-        {                        
-            using (SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation))
-            {               
-                connection.InsertAllWithChildren(ProfileQuestions, recursive: true);             
+                }
+
             }
+            catch (Exception e)
+            {
+                e.GetBaseException();
+            }        
         }
 
-        public async void SqliteToMemory()
+        public void MemoryToSqlite()
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(App.DatabaseLocation))
+            {
+                connection.InsertAllWithChildren(ProfileQuestions, recursive: true);
+            }
+
+        }
+
+        public void SqliteToMemory()
         {
             ProfileQuestions = new ObservableCollection<ProfileQuestion>(ProfileQuestion.GetAllWithChildren());
             Profiles = new ObservableCollection<Profile>(Profile.GetAll());
             Questions = new ObservableCollection<Question>(Question.GetAllWithChildren());
         }
 
-        void HardCodeToMemory()
+        public void HardCodeToMemory()
         {
             Profiles = new ObservableCollection<Profile>()
             {

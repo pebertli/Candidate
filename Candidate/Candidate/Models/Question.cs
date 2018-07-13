@@ -11,7 +11,7 @@ namespace Candidate.Models
 {
     public class Question :INotifyPropertyChanged
     {
-        [PrimaryKey, AutoIncrement]        
+        [PrimaryKey, Unique, AutoIncrement]        
         public int Id { get; set; }
 
         //[ForeignKey(typeof(ProfileQuestion))]

@@ -1,4 +1,5 @@
-﻿using Candidate.ViewModel;
+﻿using Candidate.Models;
+using Candidate.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace Candidate
             this.Title = "Encontre seu candidato";
 
             vm = new HomeViewModel();
-            BindingContext = vm;
+            BindingContext = vm;         
 
             var tapRecognizer = new TapGestureRecognizer();
             tapRecognizer.Tapped += (object sender, EventArgs e) => {
@@ -31,8 +32,6 @@ namespace Candidate
             };
             tapRecognizer.NumberOfTapsRequired = 1;
             TapImage.GestureRecognizers.Add(tapRecognizer);
-
-
 
         }
 
@@ -51,7 +50,7 @@ namespace Candidate
         protected override void OnAppearing()
         {
             base.OnAppearing();
-          
+
             vm.TryUpdate(false);
 
             

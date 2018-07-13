@@ -12,7 +12,7 @@
             VerticalOptions="Start"
             >
             <StackLayout Padding="10">
-                <Label Text="Informação" FontAttributes="Bold"/>
+                <Label Text="Info" FontAttributes="Bold"/>
                 <ScrollView Orientation="Vertical">
                     <StackLayout>
                         <Label Text="{Binding InfoTextPopup, Mode=TwoWay}"

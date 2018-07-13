@@ -17,13 +17,12 @@ namespace Candidate.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NzE2NUAzMTM2MmUzMjJlMzBHYk9XUWZsdkNPNXlsazdvSDZBRmtzS0pYdkZYd2QxYWRhSFVWb2FDamNVPQ==");
+
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
-            //SetContentView(Resource.Layout.layout1);
-
-            //Rg.Plugins.Popup.Popup.Init(this, bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             var cv = typeof(Xamarin.Forms.CarouselView);

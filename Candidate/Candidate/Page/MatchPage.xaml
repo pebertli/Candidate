@@ -106,7 +106,7 @@ xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
                    Grid.Row="1"
                    CornerRadius="10" 
                    HeightRequest="40">
-                <Grid CompressedLayout.IsHeadless="true">
+                <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
@@ -133,7 +133,7 @@ xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
                 </Grid>
             </Frame>
             <StackLayout Grid.Row="2" CompressedLayout.IsHeadless="true">
-                <Label Margin="10" Text="Clique no candidato para saber o que ele pensa sobre a questão"/>
+                <Label Margin="10" Text="Click on candidate to know what he thinks about the topic"/>
                 <syncfusion:SfListView x:Name="listView"
                                    ItemsSource="{Binding Path=Profiles, Source={x:Static candidatedata:ProfileData.Instance}, Mode=TwoWay}"
                                    Orientation="Horizontal"

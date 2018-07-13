@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:data="clr-namespace:Syncfusion.DataSource;assembly=Syncfusion.DataSource.Portable"
-             x:Name="ProfilePage"
+             x:Name="MyPage"
              x:Class="Candidate.ProfilePage">
     <ContentPage.Content>
         <Grid>
@@ -11,7 +11,7 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="9*"/>
             </Grid.RowDefinitions>
-            <Entry Placeholder="Filtrar" Grid.Row="0"/>
+            <Entry Placeholder="Filter" Grid.Row="0"/>
             <syncfusion:SfListView Grid.Row="1"      
                                    ItemSize="120"                                      
                                    VerticalOptions="Fill"
