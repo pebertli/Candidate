@@ -24,6 +24,8 @@ namespace Candidate
 		{
 			InitializeComponent ();
 
+            this.Title = "Profile";
+
             BindingContext = new ProfileViewModel();
 
             

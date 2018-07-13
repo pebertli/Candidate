@@ -21,7 +21,7 @@ namespace Candidate
 		{
 			InitializeComponent();
 
-            this.Title = "Encontre seu candidato";
+            this.Title = "Find your candidate";
 
             vm = new HomeViewModel();
             BindingContext = vm;         
